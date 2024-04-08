@@ -1,7 +1,0 @@
-
-import ssl
-import numpy.dtypes
-ssl._create_default_https_context = ssl._create_unverified_context
-import seaborn as sns
-df = sns.load_dataset("car_crashes")
-["NUM_" + col.upper() if df[col].dtype != numpy.dtype(object) else col.upper() for col in df.columns]
