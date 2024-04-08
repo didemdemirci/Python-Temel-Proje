@@ -49,6 +49,8 @@ ssl._create_default_https_context = ssl._create_unverified_context
 import seaborn as sns
 df = sns.load_dataset("titanic")
 df.nunique()
+
+
 Görev 4
 
 import ssl
@@ -58,6 +60,17 @@ import pandas
 df = sns.load_dataset("titanic")
 df["pclass"].nunique()
 #burada işlem yapmak istediğimiz sütunu df'nin yanında köşeli parantezde tırnak içinde belirtiyoruz.
+
+Görev 5
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df[["pclass","parch","sex"]].nunique()
+#ikinci sütunu eklediğimizde ikinci köşeli parantezi eklememiz gerekti, fakat 3. için ekstra gerekmiyor
+
 
 
 
