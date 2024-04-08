@@ -71,6 +71,31 @@ df = sns.load_dataset("titanic")
 df[["pclass","parch","sex"]].nunique()
 #ikinci sütunu eklediğimizde ikinci köşeli parantezi eklememiz gerekti, fakat 3. için ekstra gerekmiyor
 
+Görev 6
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df["embarked"].dtype
+#burada dtype metodu ile data tipini buluyoruz
+df["embarked"]=df["embarked"].astype("category")
+#yeniden tanımlamak için istediğimiz sutun= astype() metodunu kullandık
+df.info()
+
+
+Görev 7
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df[df["embarked"] == "C"].head(10)
+#burada sadece 10 satır görmek için sonuna head(10) koyduk. 
+
+
 
 
 
