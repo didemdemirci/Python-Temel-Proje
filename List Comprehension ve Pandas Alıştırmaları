@@ -165,6 +165,50 @@ Aslında drop bir metod ve diğer parantez içindeki değerler bu metodu kullan�
 
 Görev 13
 
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df["deck"].fillna(df["deck"].mode()[0], inplace=True)
+#burada tek satırla df["deck"].mode()[0] ile en çok tekrar eden girdiyi bir liste halinde aldığından ilk elamanını seçtik
+#sonrasında fillna metodu kullanarak boş elemanların yerine bunu koyduk
+
+
+Görev 14
+
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df["age"].fillna(df["age"].median(), inplace=True)
+
+#median bulmak için de bu defa median() metodunu kullandık ancak bu defa liste olarak varsayıp ilk elamanı alması için [0] 
+#olarak ayrıca belirtmedik.
+
+
+Görev 15
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df.groupby(["pclass","sex"]).agg({"survived": ["sum","count","mean"]})
+#öncelikle diyoruz ki elimizdeki veriyi pclass ve sex kırılımlı göster bunun için groupby metodunu
+#kullanuyoruz
+#agg (agregasyon) metodu, gruplanmış veriler üzerinde bir veya birden fazla işlemi gerçekleştirmek
+# için kullanılır. Bu durumda, survived sütunu için üç farklı işlem tanımlanmıştır:
+# sum, count ve mean.
+
+
+Görev 16
+
+
+
+
 
 
 
