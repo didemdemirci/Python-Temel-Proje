@@ -95,6 +95,77 @@ df = sns.load_dataset("titanic")
 df[df["embarked"] == "C"].head(10)
 #burada sadece 10 satır görmek için sonuna head(10) koyduk. 
 
+Görev 8 
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df["embarked"] != "S"
+df.head(10)
+# bu son iki satırı df[df["embarked"] != "S"].head(10) olarak tek satırda da yazabilirdik.
+
+Görev 9 
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df[(df["age"]>30)&(df["sex"]== "female") ].head(10)
+#buradaki önemli noktalar yazımla ilgili. yani iki farklı koşulu bir arada yazarken araya "&" sembolü
+#ekledik ve iki koşulu da ayrıca () yuvarlak parantez içine aldık
+
+Görev 10
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df[(df["fare"]>500) | (df["age"]>70)]
+# veya deniyor olmasına dikkat!! veya = | not: mac klavyesinde bu işaret option+(-) tuşu ile yapılıyor
+
+
+Görev 11
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df.isnull().sum()
+#burada yine sum metodu kullanılmış df tanımlanmış ve metod sonuna .sum() olarak eklenmiş 
+#elemanın boş mu değil mi filtrelemesi için isnull() diye ayrıca bir metod kullanılmış
+
+Görev 12
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+df.drop("who", axis=1, inplace=True)
+
+#axis=1: Bu parametre, çıkarılacak hedefin bir sütun olduğunu belirtir. 
+# axis=0 satırları hedef alırken, axis=1 sütunları hedef alır. 
+# Burada axis=1 olması, işlemin bir sütun üzerinde (yani who sütunu) yapılacağını gösterir.
+
+#inplace=True: Bu parametre, değişikliğin orijinal DataFrame üzerinde gerçekleştirilip 
+# gerçekleştirilmeyeceğini belirler. True değeri, df üzerindeki değişikliğin doğrudan 
+# yapılacağı ve bir kopya döndürülmeyeceği anlamına gelir. Yani, who sütunu,
+# df DataFrame'inden kalıcı olarak kaldırılır ve bu değişiklik df'yi günceller. 
+# False olsaydı, orijinal DataFrame değişmeden kalırdı ve değişiklik yapılmış yeni bir 
+# DataFrame döndürülürdü.
+
+
+Aslında drop bir metod ve diğer parantez içindeki değerler bu metodu kullanırken belirtilmesi gereken labellar diyebiliriz.
+
+
+Görev 13
+
+
 
 
 
