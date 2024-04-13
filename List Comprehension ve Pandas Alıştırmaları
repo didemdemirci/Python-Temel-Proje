@@ -206,6 +206,41 @@ df.groupby(["pclass","sex"]).agg({"survived": ["sum","count","mean"]})
 
 Görev 16
 
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("titanic")
+# Yaşa göre 0 veya 1 değeri döndüren fonksiyon
+def age_30(age):
+    if age<30:
+        return 1
+    else:
+        return 0
+df["age_flag"] = df["age"].apply(lambda x : age_30(x))
+
+#burada önce bir fonksiyon üretmmemizi sonrasında bu fonksiyonun veri setinde yer aldığı bir sütun oluşturmamızı istiyor
+#bu şekilde tek tek önce fonk. sonra sütun oluşturma yapabiliriz ya da
+# df["age_flag"] = df["age"].apply(lambda x: 1 if x<30 else 0)
+#şeklinde tek satırda da aynı işlemi uygulayabiliriz.
+
+Görev 17
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("tips")
+df.groupby("time").agg({"total_bill": ["sum","min","max","mean"]})
+
+Görev 18
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("tips")
+df.groupby("time").agg({"total_bill": ["sum","min","max","mean"]})
 
 
 
