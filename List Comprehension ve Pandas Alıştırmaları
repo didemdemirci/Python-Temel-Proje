@@ -244,6 +244,41 @@ df.groupby("time").agg({"total_bill": ["sum","min","max","mean"]})
 
 
 
+Görev 19
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("tips")
+df.groupby("time").agg({"total_bill": ["sum","min","mean","max"]})
+
+
+Görev 20
+
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("tips")
+df[(df["sex"] == "female") & (df["time"] == "lunch")].groupby(["day"]).agg({
+    "total_bill": ["sum", "min", "max", "mean"],
+    "tip": ["sum", "min", "max", "mean"]})
+
+Görev 21
+
+# loc için böyle bir açıklama var ama tam anlayamadım işlevini df.loc[row_indexer, column_indexer]'in 
+
+import ssl
+
+from numpy import mean
+
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("tips")
+df.loc[(df["size"] < 3) & (df["total_bill"] >10 ), "total_bill"].mean()
+
 
 
 
