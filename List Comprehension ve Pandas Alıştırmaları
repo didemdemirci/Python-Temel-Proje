@@ -280,6 +280,36 @@ df = sns.load_dataset("tips")
 df.loc[(df["size"] < 3) & (df["total_bill"] >10 ), "total_bill"].mean()
 
 
+Görev 22
+
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("tips")
+df["total_bill_tip_sum"] = df["total_bill"]+df["tip"]
+df.head()
+
+Görev 23
+
+#.sort_values() fonksiyonu, verilen sütuna göre sıralama yapmak için şu parametreleri alır:
+#by: Hangi sütuna veya sütunlara göre sıralama yapılacağını belirtir.
+#ascending: Sıralamanın artan (True) veya azalan (False) sıra ile yapılacağını belirtir. 
+#Varsayılan değeri True'dur, yani artan sıradır.
+
+import ssl
+
+ssl._create_default_https_context = ssl._create_unverified_context
+import seaborn as sns
+import pandas
+df = sns.load_dataset("tips")
+df["total_bill_tip_sum"] = df["total_bill"]+df["tip"]
+new_df = df.sort_values("total_bill_tip_sum", ascending=False)[:30]
+
+# sonuna da ilk kaç elamanını görmek istiyorsak onu ekledik [:30]: (slicingi işlemi uyguladık!!!)
+#Bu ifade, sıralama sonucunda elde edilen DataFrame'den ilk 30 satırı alır. 
+
 
 
 
