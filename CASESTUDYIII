@@ -1,0 +1,25 @@
+#GÖREV1
+
+import pandas as pd
+
+# Excel dosyasını yükle
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+# Şehir sütunundaki unique değerleri ve frekanslarını bul
+unique_cities = dff['SaleCityName'].nunique()
+city_frequencies = dff['SaleCityName'].value_counts()
+
+# Sonuçları yazdır
+print(f"Unique şehir sayısı: {unique_cities}")
+print("\nŞehir frekansları:")
+print(f"{'No':<5} {'City':<10} {'Frequency':<10}")
+
+# Şehirleri numaralandırarak yazdır
+for i, (city, frequency) in enumerate(city_frequencies.items(), 1):
+    print(f"{i:<5} {city:<10} {frequency:<10}")
+# not:Bu kod, "No", "City" ve "Frequency" başlıkları ile birlikte şehir frekanslarını
+# numaralandırarak yazdıracaktır. '<5', '<20' ve '<10' gibi formatlandırma karakterleri,
+# başlıkların ve verilerin hizalanmasını sağlar.
+
