@@ -1,4 +1,7 @@
+###################################################################################################################
 #GÖREV1
+###################################################################################################################
+SORU 1 ve 2:
 
 import pandas as pd
 
@@ -22,4 +25,185 @@ for i, (city, frequency) in enumerate(city_frequencies.items(), 1):
 # not:Bu kod, "No", "City" ve "Frequency" başlıkları ile birlikte şehir frekanslarını
 # numaralandırarak yazdıracaktır. '<5', '<20' ve '<10' gibi formatlandırma karakterleri,
 # başlıkların ve verilerin hizalanmasını sağlar.
+
+Cevap: 
+Unique şehir sayısı: 6
+
+Şehir frekansları:
+No    City       Frequency 
+1     Antalya    31649     
+2     Muğla      10662     
+3     Aydın      10646     
+4     Diğer      3245      
+5     İzmir      2507      
+6     Girne      455       
+
+
+#########################################
+
+SORU 3 ve 4:
+
+import pandas as pd
+
+# Excel dosyasını yükle
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+unique_concepts = dff['ConceptName'].nunique()
+concept_satis = dff['ConceptName'].value_counts()
+
+print(f"Unique concept sayısı: {unique_concepts}")
+print("\nSatış SAyıları:")
+print(f"{'No':<5} {'Concept':<20} {'Satış Sayısı':<10}")
+
+for i, (concept, satis) in enumerate(concept_satis.items(), 1):
+    print(f"{i:<5} {concept:<20} {satis:<10}")
+
+
+cevap:
+
+Unique concept sayısı: 3
+
+Satış Sayıları:
+No    Concept              Satış Sayısı
+1     Herşey Dahil         53186     
+2     Yarım Pansiyon       3559      
+3     Oda + Kahvaltı       2419  
+
+
+#########################################
+
+SORU 5:
+
+import pandas as pd
+
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+city_revenues = dff.groupby('SaleCityName')['Price'].sum().reset_index()
+city_revenues['Price'] = city_revenues['Price'].round(0)
+
+# Sonuçları yazdır
+print(city_revenues)
+
+Cevap: 
+
+  SaleCityName      Price
+0      Antalya  2041911.0
+1        Aydın   573296.0
+2        Diğer   154572.0
+3        Girne    27065.0
+4        Muğla   665842.0
+5        İzmir   165935.0
+
+#########################################
+
+SORU 6:
+
+import pandas as pd
+
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+concept_revenues = dff.groupby('ConceptName')['Price'].sum().reset_index()
+concept_revenues['Price'] = concept_revenues['Price'].round(0)
+
+print(concept_revenues)
+
+Cevap:
+     ConceptName      Price
+0    Herşey Dahil  3332911.0
+1  Oda + Kahvaltı   121308.0
+2  Yarım Pansiyon   174402.0
+
+#########################################
+
+SORU 7:
+
+import pandas as pd
+
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+city_mean = dff.groupby('SaleCityName')['Price'].mean().reset_index()
+city_mean['Price'] = city_mean['Price']
+
+print(city_mean)
+
+Cevap:
+ SaleCityName      Price
+0      Antalya  64.521474
+1        Aydın  53.855896
+2        Diğer  47.707497
+3        Girne  59.483579
+4        Muğla  62.461746
+5        İzmir  66.267905
+
+#########################################
+
+SORU 8: 
+
+import pandas as pd
+
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+concept_mean = dff.groupby('ConceptName')['Price'].mean().reset_index()
+concept_mean['Price'] = concept_mean['Price']
+
+print(concept_mean)
+
+Cevap:
+
+      ConceptName      Price
+0    Herşey Dahil  62.672260
+1  Oda + Kahvaltı  50.252010
+2  Yarım Pansiyon  49.030742
+
+#########################################
+
+SORU 9:
+
+import pandas as pd
+
+# Excel dosyasını yükle
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+# Şehir ve konsept kırılımında PRICE ortalamaları
+city_concept_averages = dff.groupby(['SaleCityName', 'ConceptName'])['Price'].mean().reset_index()
+
+# Sonuçları yazdır
+print(city_concept_averages)
+
+Cevap:
+SaleCityName     ConceptName      Price
+0       Antalya    Herşey Dahil  64.519028
+1       Antalya  Oda + Kahvaltı  63.504816
+2       Antalya  Yarım Pansiyon  67.190613
+3         Aydın    Herşey Dahil  53.995467
+4         Aydın  Oda + Kahvaltı  34.458787
+5         Aydın  Yarım Pansiyon  30.016543
+6         Diğer    Herşey Dahil  84.771093
+7         Diğer  Oda + Kahvaltı  37.599082
+8         Diğer  Yarım Pansiyon  42.113440
+9         Girne    Herşey Dahil  97.680970
+10        Girne  Oda + Kahvaltı  39.775536
+11        Girne  Yarım Pansiyon  53.247838
+12        Muğla    Herşey Dahil  63.020053
+13        Muğla  Oda + Kahvaltı  59.037763
+14        Muğla  Yarım Pansiyon  45.120924
+15        İzmir    Herşey Dahil  74.701519
+16        İzmir  Oda + Kahvaltı  41.320342
+17        İzmir  Yarım Pansiyon  59.610053
+
+###################################################################################################################
+#GÖREV2
+###################################################################################################################
 
