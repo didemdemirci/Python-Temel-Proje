@@ -206,4 +206,92 @@ SaleCityName     ConceptName      Price
 ###################################################################################################################
 #GÖREV2
 ###################################################################################################################
+import pandas as pd
+
+# Excel dosyasını yükle
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+# Kategorik dönüşüm fonksiyonu
+def categorize_sale_check_in_day_diff(days):
+    if days <= 7:
+        return "Last Minuters"
+    elif 8 <= days <= 30:
+        return "Potential Planners"
+    elif 31 <= days <= 90:
+        return "Planners"
+    else:
+        return "Early Bookers"
+# Yeni kategorik sütunu oluşturma
+dff['SaleCheckInCategory'] = dff['SaleCheckInDayDiff'].apply(categorize_sale_check_in_day_diff)
+# Sonuç
+print(dff)
+
+Cevap:
+CInDay SaleCheckInDay            Diff  Seasons   SaleCheckInCategory  
+0       Saturday                   0     Low       Last Minuters  
+1       Saturday                   0     Low       Last Minuters  
+2        Tuesday                   1    High       Last Minuters  
+3       Saturday                   7     Low       Last Minuters  
+4       Saturday                   2     Low       Last Minuters  
+...          ...                 ...     ...                 ...  
+59159     Monday                 279     Low       Early Bookers  
+59160     Monday                 279     Low       Early Bookers  
+59161  Wednesday                   1     Low       Last Minuters  
+59162    Tuesday                   1     Low       Last Minuters  
+59163     Monday                 231    High       Early Bookers  
+
+
+###################################################################################################################
+#GÖREV3
+###################################################################################################################
+import pandas as pd
+
+# Excel dosyasını yükle
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+print(dff)
+# Kategorik dönüşüm fonksiyonu
+def categorize_sale_check_in_day_diff(days):
+    if days <= 7:
+        return "Last Minuters"
+    elif 8 <= days <= 30:
+        return "Potential Planners"
+    elif 31 <= days <= 90:
+        return "Planners"
+    else:
+        return "Early Bookers"
+# Yeni kategorik sütunu oluşturma
+dff['SaleCheckInCategory'] = dff['SaleCheckInDayDiff'].apply(categorize_sale_check_in_day_diff)
+
+result = dff.groupby(['SaleCityName', 'ConceptName', 'SaleCheckInDayDiff']).agg(
+    mean_price=('Price', 'mean'),
+    count=('Price', 'size')
+).reset_index()
+
+print(result)
+
+Cevap:
+
+  SaleCityName     ConceptName  SaleCheckInDayDiff     mean_price  count
+0         Antalya    Herşey Dahil                   0   70.161854   2556
+1         Antalya    Herşey Dahil                   1   61.376712   3405
+2         Antalya    Herşey Dahil                   2   60.914029   2166
+3         Antalya    Herşey Dahil                   3   59.775151   1683
+4         Antalya    Herşey Dahil                   4   62.223900   1410
+...           ...             ...                 ...         ...    ...
+1817        İzmir  Yarım Pansiyon                 137   46.777547      4
+1818        İzmir  Yarım Pansiyon                 147  179.629630      1
+1819        İzmir  Yarım Pansiyon                 161   44.091711      1
+1820        İzmir  Yarım Pansiyon                 196   28.693529      1
+1821        İzmir  Yarım Pansiyon                 203   50.366300      1
+
+
+
+###################################################################################################################
+#GÖREV4
+###################################################################################################################
+
 
