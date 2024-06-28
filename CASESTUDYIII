@@ -295,3 +295,53 @@ Cevap:
 ###################################################################################################################
 
 
+import pandas as pd
+
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+
+agg_dff = dff.groupby(['SaleCityName', 'ConceptName', 'Seasons']).agg({"Price": "mean"}).sort_values("Price", ascending=False)
+print(agg_dff.head())
+
+###################################################################################################################
+#GÖREV6
+###################################################################################################################
+ 
+import pandas as pd
+
+# Excel dosyasını yükle
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+# Kategorik dönüşüm fonksiyonu
+
+agg_df = dff.groupby(['SaleCityName', 'ConceptName', 'Seasons']).agg({"Price": "mean"}).sort_values("Price", ascending=False)
+agg_df.reset_index(inplace=True)
+agg_df['sales_level_based'] = agg_df[["SaleCityName", "ConceptName", "Seasons"]].agg(lambda x: '_'.join(x).upper(), axis=1)
+print(agg_df)
+
+###################################################################################################################
+#GÖREV8
+###################################################################################################################
+import pandas as pd
+
+# Excel dosyasını yükle
+dff = pd.read_excel("datasets/miuul_gezinomi.xlsx")
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', 500)
+# Kategorik dönüşüm fonksiyonu
+
+agg_df = dff.groupby(['SaleCityName', 'ConceptName', 'Seasons']).agg({"Price": "mean"}).sort_values("Price", ascending=False)
+agg_df.reset_index(inplace=True)
+agg_df['sales_level_based'] = agg_df[["SaleCityName", "ConceptName", "Seasons"]].agg(lambda x: '_'.join(x).upper(), axis=1)
+agg_df["SEGMENT"] = pd.qcut(agg_df["Price"], 4, labels=["D", "C", "B", "A"])
+agg_df.head(30)
+agg_df.groupby("SEGMENT").agg({"Price": ["mean", "max", "sum"]})
+agg_df.sort_values(by="Price")
+
+print(agg_df)
+
+
+
+
